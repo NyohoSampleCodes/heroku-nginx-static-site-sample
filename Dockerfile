@@ -8,10 +8,9 @@ RUN cd src/2019 \
 
 FROM nginx:alpine
 COPY docker-resources/default.conf.template /etc/nginx/conf.d/default.conf.template
-CMD /bin/sh -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
 WORKDIR /etc/nginx/additional
 ADD conf-for-nginx .
 WORKDIR /www
 COPY --from=build /tmp/docs .
-RUN echo $PORT
-CMD ["nginx" $PORT]
+RUN /bin/sh -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf"
+CMD nginx -g 'daemon off;'
