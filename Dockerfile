@@ -12,5 +12,5 @@ WORKDIR /etc/nginx/additional
 ADD conf-for-nginx .
 WORKDIR /www
 COPY --from=build /tmp/docs .
-# EXPOSE 80
-# CMD ["nginx"]
+RUN echo $PORT
+CMD ["nginx" $PORT]
