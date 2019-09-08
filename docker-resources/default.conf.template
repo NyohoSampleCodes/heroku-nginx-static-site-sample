@@ -1,5 +1,6 @@
 server {
     listen $PORT;
+    absolute_redirect off;
 
 	include /etc/nginx/additional/*;
 
@@ -8,9 +9,9 @@ server {
 	root  /www;
 	index index.php index.html index.htm;
 
-	location / {
-		try_files $uri $uri/ /index.php?$args;
-	}
+	# location / {
+	# 	try_files $uri $uri/ /index.php?$args;
+	# }
 
 	location = /favicon.ico {
 		log_not_found off;
