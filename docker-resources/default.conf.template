@@ -9,6 +9,16 @@ server {
 	root  /www;
 	index index.php index.html index.htm;
 
+    header_filter_by_lua_block {
+        local h = ngx.req.get_headers()
+        local h_str = "##"
+        for k, v in pairs(h) do
+          h_str = h_str..k..":"..v.."\t"
+        end
+        h_str = h_str.."##"
+        ngx.log(ngx.ERR, "Got header "..h_str)
+    }
+
 	# location / {
 	# 	try_files $uri $uri/ /index.php?$args;
 	# }

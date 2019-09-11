@@ -24,3 +24,14 @@ Set an environment variable:
 : heroku config:set KEY='value'
 
 Check on the web https://<heroku-app-name>.herokuapp.com] to find =KEY= and =value=.
+
+* Docker
+Build
+#+begin_src sh
+docker build -t someone/heroku-nginx-static-site-sample .
+#+end_src
+
+Run
+#+begin_src sh
+docker run -d -e PORT=3001 -p 3001:3001 -t someone/heroku-nginx-static-site-sample
+#+end_src
