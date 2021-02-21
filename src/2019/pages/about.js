@@ -3,6 +3,6 @@ import Link from 'next/link'
 
 export default () =>
   <div>
-    <div>Hello, world!</div>
-    <li><Link href='about'><a>About</a></Link></li>
+    <div>About me</div>
+    <li><Link href='./'><a>Home</a></Link></li>
   </div>

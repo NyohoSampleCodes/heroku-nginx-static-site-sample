@@ -1,0 +1,37 @@
+#+title: A sample of environment variables on Docker on Heroku
+
+* Enable review apps on Heroku
+
+1. Go to https://dashboard.heroku.com.
+2. Create a new (empty) app if you don't have that.
+3. Create a new pipeline.
+4. Connect a GitHub repository.
+5. Add at least one app to the pipeline.
+6. Push "Enable Review Apps...".
+7. Push "Create an app.json file..."
+8. Check "Create new review apps for new pull requests automatically"
+9. (Optional) Check "Destroy stale review apps"
+
+* Development
+#+begin_src sh
+heroku create # <heroku-app-name> will be shown.
+heroku stack:set container -a <heroku-app-name>
+heroku git:remote -a <heroku-app-name>
+#+end_src
+
+Set an environment variable:
+
+: heroku config:set KEY='value'
+
+Check on the web https://<heroku-app-name>.herokuapp.com] to find =KEY= and =value=.
+
+* Docker
+Build
+#+begin_src sh
+docker build -t someone/heroku-nginx-static-site-sample .
+#+end_src
+
+Run
+#+begin_src sh
+docker run -d -e PORT=3001 -p 3001:3001 -t someone/heroku-nginx-static-site-sample
+#+end_src
